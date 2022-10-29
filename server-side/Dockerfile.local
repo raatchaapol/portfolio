@@ -1,0 +1,17 @@
+FROM node:lts-alpine
+
+RUN mkdir -p /var/local/app
+
+WORKDIR /var/local/app
+
+RUN npm i -g @nestjs/cli --silent
+
+COPY package.json .
+
+RUN yarn --silent
+
+COPY . .
+
+EXPOSE $BACKEND_PORT
+
+CMD ["yarn", "run", "start:debug"]

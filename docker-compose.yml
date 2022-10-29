@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  client-side:
+    container_name: ratchapol-client
+    build:
+      context: ./client-side
+      dockerfile: Dockerfile.local
+    restart: always
+    env_file: .env
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    volumes:
+      - ./client-side:/var/src/app
+      - ./client-side/node_modules:/var/src/app/node_modules
+    networks:
+      - ratchapol-network
+
+  server-side:
+    container_name: ratchapol-server
+    build:
+      context: ./server-side
+      dockerfile: Dockerfile.local
+    restart: always
+    env_file: .env
+    volumes:
+      - ./server-side:/var/local/app
+      - /var/local/app/node_modules
+    networks:
+      - ratchapol-network
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+
+networks:
+  ratchapol-network:
+    driver: bridge
