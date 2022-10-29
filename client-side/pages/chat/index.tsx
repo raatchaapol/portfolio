@@ -1,5 +1,4 @@
 import { GetStaticProps, NextPage } from "next"
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import RcpHead from "../../components/base/RcpHead"
 import useChatExample from "../../lib/contexts/useChatExample"
