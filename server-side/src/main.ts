@@ -24,7 +24,14 @@ async function bootstrap() {
     });
   });
 
-  await app.listen(APP.PORT);
+  await app.listen(APP.PORT, APP.DEFAULT_HOST, () => {
+    console.log(
+      `Server is running on 
+      ${APP.DEFAULT_PROTOCOL}://${APP.DEFAULT_HOST}:${APP.PORT} 
+      and
+      http://localhost:${APP.PORT}`,
+    );
+  });
 }
 
 bootstrap();
