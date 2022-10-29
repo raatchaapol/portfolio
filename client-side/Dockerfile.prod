@@ -1,5 +1,6 @@
 FROM node:lts-slim as build
 
+RUN mkdir -p /var/production/app
 WORKDIR /var/production/app
 
 COPY package.json .
